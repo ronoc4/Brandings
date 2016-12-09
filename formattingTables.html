@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Table Hell</title>
+    <link rel="stylesheet" type="text/css" href="table.css">
+
+    <script>
+        var headertext = [];
+        var headers = document.querySelectorAll("thead");
+        var tablebody = document.querySelectorAll("tbody");
+
+        for (var i = 0; i < headers.length; i++) {
+            headertext[i]=[];
+            for (var j = 0, headrow; headrow = headers[i].rows[0].cells[j]; j++) {
+                var current = headrow;
+                headertext[i].push(current.textContent);
+            }
+        }
+
+        for (var h = 0, tbody; tbody = tablebody[h]; h++) {
+            for (var x = 0, row; row = tbody.rows[x]; x++) {
+                for (var y = 0, col; col = row.cells[y]; y++) {
+                    col.setAttribute("data-th", headertext[h][y]);
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<table id="exis">
+    <thead>
+    <tr>
+        <th>Beverage</th>
+        <th>Short caffeine</th>
+        <th>Tall caffeine</th>
+        <th>Grande caffeine</th>
+        <th>Venti caffeine</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td data-th="Beverage">Brewed Coffee</td>
+        <td data-th="Short caffeine">180mg</td>
+        <td data-th="Tall caffeine">260mg</td>
+        <td data-th="Grande caffeine">330mg</td>
+        <td data-th="Venti caffeine">415mg</td>
+    </tr>
+    <tr>
+        <td data-th="Beverage">Brewed Decaf Coffee</td>
+        <td data-th="Short caffeine">15mg</td>
+        <td data-th="Tall caffeine">20mg</td>
+        <td data-th="Grande caffeine">25mg</td>
+        <td data-th="Venti caffeine">30mg</td>
+    </tr>
+    <tr>
+        <td data-th="Beverage">Caffè Americano</td>
+        <td data-th="Short caffeine">75mg</td>
+        <td data-th="Tall caffeine">150mg</td>
+        <td data-th="Grande caffeine">225mg</td>
+        <td data-th="Venti caffeine">300mg</td>
+    </tr>
+    <tr>
+        <td data-th="Beverage">Caffè Latte</td>
+        <td data-th="Short caffeine">75mg</td>
+        <td data-th="Tall caffeine">75mg</td>
+        <td data-th="Grande caffeine">150mg</td>
+        <td data-th="Venti caffeine">150mg</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
